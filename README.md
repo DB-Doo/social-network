@@ -15,7 +15,7 @@ A dynamic Social Network API built with Express.js, MongoDB, and Mongoose ODM, d
 
 ## Demonstration Video
 
-[Click here](#) to watch the demonstration video showcasing the API functionality and how to use it.
+[Click here](https://app.screencastify.com/v3/watch/XxYZmGjoGJQE5BiBD9Jn) to watch the demonstration video showcasing the API functionality and how to use it.
 
 ## Installation
 
