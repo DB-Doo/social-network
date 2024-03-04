@@ -9,6 +9,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// Use the API routes with the base path '/api'
 app.use("/api", routes);
 
 db.once('open', () => {
