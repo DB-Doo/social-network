@@ -3,7 +3,7 @@ const Thought = require("../models/Thought");
 const User = require("../models/User");
 
 // GET to get all thoughts
-router.get('/thoughts', async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const thoughts = await Thought.find();
     res.json(thoughts);
@@ -13,7 +13,7 @@ router.get('/thoughts', async (req, res) => {
 });
 
 // GET to get a single thought by its _id
-router.get('/thoughts/:id', async (req, res) => {
+router.get('/:id', async (req, res) => {
   try {
     const thought = await Thought.findById(req.params.id);
     if (!thought) {
@@ -27,7 +27,7 @@ router.get('/thoughts/:id', async (req, res) => {
 });
 
 // POST to create a new thought
-router.post('/thoughts', async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const newThought = await Thought.create(req.body);
     await User.findByIdAndUpdate(req.body.userId, { $push: { thoughts: newThought._id } }, { new: true });
@@ -38,7 +38,7 @@ router.post('/thoughts', async (req, res) => {
 });
 
 // PUT to update a thought by its _id
-router.put('/thoughts/:id', async (req, res) => {
+router.put('/:id', async (req, res) => {
   try {
     const updatedThought = await Thought.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!updatedThought) {
@@ -52,7 +52,7 @@ router.put('/thoughts/:id', async (req, res) => {
 });
 
 // DELETE to remove a thought by its _id
-router.delete('/thoughts/:id', async (req, res) => {
+router.delete('/:id', async (req, res) => {
   try {
     const thoughtToDelete = await Thought.findByIdAndDelete(req.params.id);
     if (!thoughtToDelete) {
@@ -68,7 +68,7 @@ router.delete('/thoughts/:id', async (req, res) => {
 });
 
 // POST to create a reaction stored in a single thought's reactions array field
-router.post('/thoughts/:thoughtId/reactions', async (req, res) => {
+router.post('/:thoughtId/reactions', async (req, res) => {
   try {
     const updatedThought = await Thought.findByIdAndUpdate(
       req.params.thoughtId,
@@ -86,7 +86,7 @@ router.post('/thoughts/:thoughtId/reactions', async (req, res) => {
 });
 
 // DELETE to pull and remove a reaction by the reaction's reactionId value
-router.delete('/thoughts/:thoughtId/reactions/:reactionId', async (req, res) => {
+router.delete('/:thoughtId/reactions/:reactionId', async (req, res) => {
   try {
     const updatedThought = await Thought.findByIdAndUpdate(
       req.params.thoughtId,
